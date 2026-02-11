@@ -38,9 +38,9 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
       }
 
       try {
-        const safeTitle = encodeURIComponent(libraryTitle.replace(/'/g, "''"));
+        const safeTitle = encodeURIComponent(libraryTitle);
         const response = await spHttpClient.get(
-          `${siteUrl}/_api/web/lists/getbytitle('${safeTitle}')?$select=ItemCount`,
+          `${siteUrl}/_api/web/lists/GetByTitle(@title)?@title='${safeTitle}'&$select=ItemCount`,
           SPHttpClient.configurations.v1
         );
 
@@ -84,7 +84,12 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
           {libraryTitle ? `Tracking: ${libraryTitle}` : 'Set a library title in the web part settings.'}
         </p>
       </header>
-      <div className={styles.countCard}>
+      <div
+        className={styles.countCard}
+        aria-live="polite"
+        aria-atomic="true"
+        aria-label={isLoading ? 'Loading document count' : `Document count: ${count ?? 0}`}
+      >
         {isLoading ? (
           <span className={styles.loading}>Loading…</span>
         ) : (
@@ -93,7 +98,7 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
         <span className={styles.countLabel}>Documents</span>
       </div>
       {error && <p className={styles.error}>{error}</p>}
-      <p className={styles.helper}>Updates automatically every few seconds without refreshing the page.</p>
+      <p className={styles.helper}>Updates automatically based on the configured refresh interval.</p>
     </section>
   );
 };
