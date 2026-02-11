@@ -38,7 +38,7 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
       }
 
       try {
-        const safeTitle = encodeURIComponent(libraryTitle.replace(/'/g, "''"));
+        const safeTitle = encodeURIComponent(libraryTitle).replace(/'/g, '%27');
         const response = await spHttpClient.get(
           `${siteUrl}/_api/web/lists/GetByTitle(@title)?@title='${safeTitle}'&$select=ItemCount`,
           SPHttpClient.configurations.v1
