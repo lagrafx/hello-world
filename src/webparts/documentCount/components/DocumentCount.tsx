@@ -38,9 +38,9 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
       }
 
       try {
-        const safeTitle = encodeURIComponent(libraryTitle).replace(/'/g, '%27');
+        const safeTitle = encodeURIComponent(`'${libraryTitle.replace(/'/g, "''")}'`);
         const response = await spHttpClient.get(
-          `${siteUrl}/_api/web/lists/GetByTitle(@title)?@title='${safeTitle}'&$select=ItemCount`,
+          `${siteUrl}/_api/web/lists/GetByTitle(@title)?@title=${safeTitle}&$select=ItemCount`,
           SPHttpClient.configurations.v1
         );
 
@@ -65,7 +65,7 @@ const DocumentCount: React.FC<IDocumentCountProps> = ({
       }
     };
 
-    void refresh();
+    refresh();
 
     const intervalSeconds = Math.max(refreshIntervalSeconds ?? MINIMUM_REFRESH_SECONDS, MINIMUM_REFRESH_SECONDS);
     const intervalId = window.setInterval(refresh, intervalSeconds * 1000);
