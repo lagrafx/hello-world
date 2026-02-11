@@ -1,0 +1,62 @@
+.documentCount {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  max-width: 360px;
+}
+
+.header {
+  margin-bottom: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  color: #242424;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #666666;
+}
+
+.countCard {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+}
+
+.countValue {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f6cbd;
+}
+
+.countLabel {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #444444;
+}
+
+.loading {
+  font-size: 14px;
+  color: #666666;
+}
+
+.error {
+  margin: 12px 0 0;
+  color: #a4262c;
+  font-size: 12px;
+}
+
+.helper {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: #666666;
+}
